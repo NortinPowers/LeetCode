@@ -134,8 +134,8 @@ class SolutionMaximumLengthOfAConcatenatedStringWithUniqueCharacters {
         if (maxLengthString < lastSize) {
             maxLengthString = lastSize;
         }
-        return maxLengthString;
 
+        return maxLengthString;
     }
 
     public static Boolean CheckIdenticalCharacters(String s) {
@@ -151,4 +151,3 @@ class SolutionMaximumLengthOfAConcatenatedStringWithUniqueCharacters {
         return identicalCharacters;
     }
 }
-
