@@ -1,5 +1,10 @@
 package ContainerWithMostWater;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ContainerWithMostWater {
     public static void main(String[] args) {
         SolutionContainerWithMostWater solutionContainerWithMostWater = new SolutionContainerWithMostWater();
@@ -19,7 +24,7 @@ public class ContainerWithMostWater {
 }
 
 //time limit exception
-class SolutionContainerWithMostWater {
+class SolutionContainerWithMostWaterVer1 {
     public int maxArea(int[] height) {
         int heightLength = height.length;
         if (heightLength < 2 || heightLength > Math.pow(10, 5)) {
@@ -58,6 +63,66 @@ class SolutionContainerWithMostWater {
                 if (currentRightHeight > containerSize) {
                     containerSize = currentRightHeight;
                 }
+            }
+        }
+        return containerSize;
+    }
+}
+
+//this is still a time limit exception
+class SolutionContainerWithMostWater {
+    public int maxArea(int[] height) {
+        int heightLength = height.length;
+//        Constraints
+        if (heightLength < 2 || heightLength > Math.pow(10, 5)) {
+            return 0;
+        }
+        List<Integer> heightList = Arrays.stream(height).boxed().collect(Collectors.toList());
+        int containerSize = 0;
+        height = Arrays.stream(height).sorted().toArray();
+        int count;
+//        Constraints max element
+        if (height[heightLength - 1] > Math.pow(10, 4)) {
+            return 0;
+        }
+        int lastElementIndex;
+        int lastElementLastIndex;
+        int previousElementIndex;
+        int previousElementLastIndex;
+        ArrayList<Integer> testInt = new ArrayList<>();
+        List<List<Integer>> alreadyTestInt = new ArrayList<>();
+        for (int i = heightLength - 1; i > 0; i--) {
+            count = 0;
+            while (i - count > 0) {
+//            Constraints min element
+                if (height[i] < 0) {
+                    return 0;
+                }
+                int currentLastElement = height[i];
+                int currentPreviousElement = height[i - 1 - count];
+                testInt.add(currentLastElement);
+                testInt.add(currentPreviousElement);
+                if (alreadyTestInt.contains(testInt)) {
+                    count++;
+                    continue;
+                } else {
+                    alreadyTestInt.add((ArrayList) testInt.clone());
+                    testInt.clear();
+                }
+                lastElementIndex = heightList.indexOf(currentLastElement);
+                lastElementLastIndex = heightList.lastIndexOf(currentLastElement);
+                previousElementIndex = heightList.indexOf(currentPreviousElement);
+                previousElementLastIndex = heightList.lastIndexOf(currentPreviousElement);
+                int maxCurrentHeightOne = Math.abs(lastElementIndex - previousElementLastIndex) * currentPreviousElement;
+                int maxCurrentHeightTwo = Math.abs(lastElementLastIndex - previousElementIndex) * currentPreviousElement;
+                if (maxCurrentHeightOne >= maxCurrentHeightTwo && maxCurrentHeightOne > containerSize) {
+                    containerSize = maxCurrentHeightOne;
+                } else {
+                    if (maxCurrentHeightTwo > containerSize) {
+                        containerSize = maxCurrentHeightTwo;
+                    }
+                }
+                count++;
             }
         }
         return containerSize;
