@@ -1,4 +1,4 @@
-package _3Sum;
+package ThreeSum;
 
 import java.util.ArrayList;
 import java.util.Collections;
