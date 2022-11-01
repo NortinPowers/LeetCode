@@ -7,8 +7,7 @@ public class SolutionTwoSumTest extends TestCase {
 
     public void testTwoSum() {
         SolutionTwoSum solutionTwoSum = new SolutionTwoSum();
-        int[] expectedResult;
-        int[] actualResult;
+        int[] expectedResult, actualResult;
         expectedResult = new int[]{1, 3};
         actualResult = solutionTwoSum.twoSum(new int[]{1, 3, 2, 3}, 6);
         Assert.assertArrayEquals(expectedResult, actualResult);
