@@ -1,8 +1,6 @@
 package ZigzagConversion;
 
 
-import java.util.*;
-
 public class ZigzagConversion {
     public static void main(String[] args) {
         SolutionZigzagConversion solutionZigzagConversion = new SolutionZigzagConversion();
