@@ -12,6 +12,7 @@
         <module>Test</module>
         <module>RemoveDuplicates</module>
         <module>RemoveDuplicates</module>
+        <module>ThreeSumClosest</module>
     </modules>
 
     <properties>
